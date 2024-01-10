@@ -3,7 +3,7 @@ using WebMarket_Models;
 
 namespace WebMarket_DataAccess.Services.Interface
 {
-    public interface ICategoryServicess
+    public interface ICategoryServices
     {
         void Add(Category entity);
         IEnumerable<Category> GetAll();

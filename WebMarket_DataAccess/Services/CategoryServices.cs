@@ -4,42 +4,42 @@ using WebMarket_Models;
 
 namespace WebMarket_DataAccess.Services
 {
-    public class CategoryServices : ICategoryServicess   
+    public class CategoryServices : ICategoryServices
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _CategoryServices;
 
-        public CategoryServices(ApplicationDbContext db)
+        public CategoryServices(ApplicationDbContext CategoryServices)
         {
-            _db = db;
+            _CategoryServices = CategoryServices;
         }
         public void Add(Category entity)
         {
-            _db.Categories.Add(entity);
-            _db.SaveChanges();
+            _CategoryServices.Categories.Add(entity);
+            _CategoryServices.SaveChanges();
         }
         public void Update(Category category)
         {
-            _db.Categories.Update(category);
-            _db.SaveChanges();
+            _CategoryServices.Categories.Update(category);
+            _CategoryServices.SaveChanges();
         }
         public void Remove(Category entity)
         {
-            _db.Categories.Remove(entity);
-            _db.SaveChanges();
+            _CategoryServices.Categories.Remove(entity);
+            _CategoryServices.SaveChanges();
         }
         public void RemoveRange(IEnumerable<Category> entities)
         {
-            _db.Categories.RemoveRange(entities);
-            _db.SaveChanges();
+            _CategoryServices.Categories.RemoveRange(entities);
+            _CategoryServices.SaveChanges();
         }
         public IEnumerable<Category> GetAll()
         {
-            IEnumerable<Category> query = _db.Categories;
+            IEnumerable<Category> query = _CategoryServices.Categories;
             return query;
         }
         public Category GetFirstOrDefaulte(Expression<Func<Category, bool>> filter)
         {
-            IQueryable<Category> query = _db.Categories;
+            IQueryable<Category> query = _CategoryServices.Categories;
             query = query.Where(filter);
             return query.FirstOrDefault();
         }

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<partial name="_Notification" />
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-black">لیست محصولات</h2>
+        </div>
+        <div class="col-6">
+            <a asp-area="Admin" asp-controller="product" asp-action="upsert" class="btn btn-outline-dark">ایجاد محصول جدید</a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>نام محصول</th>
+                <th>شابک</th>
+                <th>نویسنده</th>
+                <th>قیمت</th>
+                <th>دسته بندی</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td width="50%">
+                        @obj.Title
+                    </td>
+                    <td width="50%">
+                        @obj.ISBN
+                    </td>
+                    <td width="50%">
+                        @obj.Auther
+                    </td>
+                    <td width="50%">
+                        @obj.Price
+                    </td>
+                    <td width="50%">
+                        @obj.Category.Name
+                    </td>
+                    <td>
+                        <div class="m-75 btn-group" role="group">
+                            <a asp-controller="product" asp-action="upsert" asp-route-id="@obj.Id">
+                                ویرایش
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="m-75 btn-group" role="group">
+                            <a asp-controller="product" asp-action="delete" asp-route-id="@obj.Id">
+                                حذف
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

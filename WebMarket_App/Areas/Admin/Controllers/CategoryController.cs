@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebMarket_DataAccess.Services;
+using WebMarket_DataAccess.Services.Interface;
 using WebMarket_Models;
 
 
@@ -8,12 +8,13 @@ namespace WebMarket_App.Controllers
     [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly CategoryServices _CategoryServices;
+        private readonly ICategoryServices _CategoryServices;
 
-        public CategoryController(CategoryServices CategoryServices)
+        public CategoryController(ICategoryServices CategoryServices)
         {
             _CategoryServices = CategoryServices;
         }
+        [HttpGet]
         public IActionResult Index()
         {
             IEnumerable<Category> CategoryList = _CategoryServices.GetAll();

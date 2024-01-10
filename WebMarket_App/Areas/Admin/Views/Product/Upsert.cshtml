@@ -1,0 +1,84 @@
+﻿@using WebMarket_Models.ViewModels
+@model ProductVM
+@{
+    ViewData["Title"] = "Upsert";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <input asp-for="Product.Id" type="hidden" />
+    <input asp-for="Product.Img" type="hidden" />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2>@(Model.Product.Id != 0 ? "ویرایش" : "ایجاد") محصول</h2>
+            <hr />
+            <div class="mb-3">
+                <label asp-for="Product.Title"></label>
+                <input asp-for="Product.Title" class="form-control" />
+                <span asp-validation-for="Product.Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Product.Description"></label>
+                <textarea asp-for="Product.Description" class="form-control"></textarea>
+                <span asp-validation-for="Product.Description" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label asp-for="Product.ISBN"></label>
+                    <input asp-for="Product.ISBN" class="form-control" />
+                    <span asp-validation-for="Product.ISBN" class="text-danger"></span>
+                </div>
+                <div class="col-6 mb-3">
+                    <label asp-for="Product.Auther"></label>
+                    <input asp-for="Product.Auther" class="form-control" />
+                    <span asp-validation-for="Product.Auther" class="text-danger"></span>
+                </div>
+                <div class="col-6 mb-3">
+                    <label asp-for="Product.ListPrice"></label>
+                    <input asp-for="Product.ListPrice" class="form-control" />
+                    <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+                </div>
+                <div class="col-6 mb-3">
+                    <label asp-for="Product.Price"></label>
+                    <input asp-for="Product.Price" class="form-control" />
+                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+                </div>
+                <div class=col-6 "mb-3">
+                    <label asp-for="Product.Price50"></label>
+                    <input asp-for="Product.Price50" class="form-control" />
+                    <span asp-validation-for="Product.Price50" class="text-danger"></span>
+                </div>
+                <div class="col-6 mb-3">
+                    <label asp-for="Product.Price100"></label>
+                    <input asp-for="Product.Price100" class="form-control" />
+                    <span asp-validation-for="Product.Price100" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Product.Img"></label>
+                <input type="file" name="file" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Product.CategoryId"></label>
+                <select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-select">
+                    <option disabled selected>---انتخاب دسته---</option>
+                </select>
+                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                @if (Model.Product.Id != 0)
+                {
+                    <button type="submit" class="btn btn-outline-dark m-auto" style="width:150px">ویرایش محصول</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-outline-dark m-auto" style="width:150px">ایجاد محصول</button>
+                }
+                <a asp-controller="product" asp-action="Index" class="btn btn-outline-dark m-auto" style="width:150px">بازگشت به لیست</a>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
